@@ -7,10 +7,7 @@
  */
 
 import React,{useState} from 'react';
-import { SafeAreaView, StyleSheet, Image, Text} from 'react-native';
-// @ts-ignore
-import { BoardRepository, Board } from 'react-native-draganddrop-board';
-
+import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, Pressable, View, FlatList} from 'react-native';
 
 /**
  * FUNCTION - KanbanBoard()
@@ -70,16 +67,10 @@ export default KanbanBoard = ({navigation,route}) => {
         rows: []
       }
     ]
-     
-    const boardRepository = new BoardRepository(data);
-  
-    // function renderText(){
-    //     setTx(boardRepository.items(1).length - 1);
-    //     return(
-    //         <Text> {tx} </Text>
-    //     );
-        
-    // }
+
+    const pushToMove = (elem) => {
+        console.log("Element pressed was:",elem.name,"\n");
+    }
 
     return (
       <SafeAreaView style={styles.board_container}>
@@ -87,13 +78,39 @@ export default KanbanBoard = ({navigation,route}) => {
           <Image style ={{ transform:[{scale:0.27}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
         </SafeAreaView>
         <SafeAreaView style={styles.board}>
-          <Board
-            boardRepository={boardRepository}
-            open={() => {}}
-            onPress={() => {}}
-            onDragEnd={() => {}}
-            board
-          />
+          <SafeAreaView style={styles.columns}>
+            <Text style={styles.column_heading}>
+              TO DO
+            </Text>
+            <FlatList
+            data ={data[0].rows}
+            renderItem={({item})=>(
+              // TO BE DONE !
+              <TouchableOpacity style={styles.cards} onPress={pushToMove(item)}>
+                <Text>{item.name}</Text>
+                </TouchableOpacity>
+              
+            )}
+           />
+            {/* <View>
+            {
+              data[0].rows.map((element,index) =>  {
+                return <Pressable style={styles.cards} key={element.id} onPress={pushToMove(element)}
+                ><Text>{element.name}</Text></Pressable>})
+            }  
+            </View>    */}
+          </SafeAreaView>
+          <SafeAreaView style={styles.columns}>
+          <Text style={styles.column_heading}>
+              IN PROGRESS
+            </Text>
+          </SafeAreaView>
+          <SafeAreaView style={styles.columns}>
+          <Text style={styles.column_heading}>
+              DONE
+            </Text>
+          </SafeAreaView>
+          
         </SafeAreaView>
         <SafeAreaView style={styles.board_bottom}>
             {/* <Text> {boardRepository.items(1).length - 1} </Text> */}
@@ -113,19 +130,46 @@ export default KanbanBoard = ({navigation,route}) => {
         resizeMode:'contain'
       },
     
-      board_title:{flex:0.3,
+      board_title:{flex:0.5,
         alignItems: 'center',
         justifyContent: 'center',
         resizeMode:'contain',
       backgroundColor:'#0197f6'},
       
         board:{
-        flex:1.7,
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex:3,
+        flexDirection:'row',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        backgroundColor:'#0197f6',
         resizeMode:'contain'
       },
       
+      columns:{
+        flex:1,
+        backgroundColor:"#bbb",
+        alignItems:"center",
+        // justifyContent:"center",
+        margin:3,
+        borderRadius:10
+      },
+
+      column_heading:{
+        marginTop:30,
+        marginBottom:30
+      },
+
+      cards:{
+        backgroundColor:"beige",
+        alignItems:"center",
+        justifyContent:"center",
+        borderStyle:'dashed',
+        borderRadius:30,
+        borderWidth:2,
+        marginTop:15,
+        padding:10
+      },
+
       board_bottom:{flex:0.3,
         alignItems: 'center',
         justifyContent: 'center',
