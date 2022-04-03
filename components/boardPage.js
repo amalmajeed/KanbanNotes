@@ -89,7 +89,7 @@ export default KanbanBoard = ({navigation,route}) => {
         setData([...data, temp]);
         console.log("FINAL DATA !!",data,"\n");
         //setRenderer(renderer+1);
-        //setNew("");
+        setNew("");
         console.log("************************************ END ***********************************\n");
         //console.log("STATE DATA !!",RenderData,"\n");
       }
@@ -218,6 +218,7 @@ export default KanbanBoard = ({navigation,route}) => {
         borderStyle:'dashed',
         borderRadius:30,
         borderWidth:2,
+        width:100,
         marginTop:15,
         padding:10
       },
