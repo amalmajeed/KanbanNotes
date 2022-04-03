@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19000,
-  "expoServerNgrokUrl": "https://vc-ra5.amalmajeed.todonotes.exp.direct",
-  "packagerNgrokUrl": "https://vc-ra5.amalmajeed.todonotes.exp.direct",
-  "ngrokPid": 39059,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "packagerPid": null,
   "webpackServerPort": null
 }

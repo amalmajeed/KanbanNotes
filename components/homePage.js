@@ -42,14 +42,14 @@ export default HomePage = ({navigation}) => {
   const [t1,setTask1] = useState("");
   const [t2,setTask2] = useState("");
   const [t3,setTask3] = useState("");
-  const [t4,setTask4] = useState("");
-  const [t5,setTask5] = useState("");
+  // const [t4,setTask4] = useState("");
+  // const [t5,setTask5] = useState("");
   const [errMsg,setErr] = useState("");
 
   const noTaskDuplicatesOrEmpties = () =>
   {
-      console.log("The state inside the function \n t1:",t1,"t2:",t2,"t3:",t3,"t4:",t4,"t5:",t5,"\n");
-      if((t1=="")||(t2=="")||(t3=="")||(t4=="")||(t5==""))
+      console.log("The state inside the function \n t1:",t1,"t2:",t2,"t3:",t3);//,"t4:",t4,"t5:",t5,"\n");
+      if((t1=="")||(t2=="")||(t3==""))//||(t4=="")||(t5==""))
       {
           setErr("Empty task entry(s) found ! Don't slack now, we have the day to conquer ! ");
           return(false);
@@ -58,22 +58,30 @@ export default HomePage = ({navigation}) => {
       const l1 = t1.toLowerCase();
       const l2 = t2.toLowerCase();
       const l3 = t3.toLowerCase();
-      const l4 = t4.toLowerCase();
-      const l5 = t5.toLowerCase();
+      // const l4 = t4.toLowerCase();
+      // const l5 = t5.toLowerCase();
 
-      if((l1!=l2)||(l1!=l3)||(l1!=l4)||(l1!=l5))
+      // if((l1!=l2)||(l1!=l3)||(l1!=l4)||(l1!=l5))
+      // {
+      //     if((l2!=l3)||(l2!=l4)||(l2!=l5))
+      //     {
+      //       if((l3!=l4)||(l3!=l5))
+      //       {
+      //           if((l4!=l5))
+      //           {
+      //               setErr('');
+      //               return(true)
+      //           }
+      //       }    
+      //     }
+      // }
+      if((l1!=l2)||(l1!=l3))
       {
-          if((l2!=l3)||(l2!=l4)||(l2!=l5))
-          {
-            if((l3!=l4)||(l3!=l5))
-            {
-                if((l4!=l5))
-                {
-                    setErr('');
-                    return(true)
-                }
-            }    
-          }
+        if((l2!=l3))
+        {
+            setErr('');
+            return(true)
+        }
       }
       setErr("Duplicate task entries found ! Retry !");
       return(false);
@@ -90,7 +98,7 @@ return(
         </Text>
     </SafeAreaView>
     <SafeAreaView style={styles.home_midsection}>
-      <Text style={styles.text_title}> Enter your 5 focus tasks for today !</Text>
+      <Text style={styles.text_title}> Enter your 3 focus tasks for today !</Text>
       <TextInput style={styles.input}
         onChangeText={(tsk) => setTask1(tsk)}
         placeholder="Enter task 2 here" />
@@ -100,12 +108,12 @@ return(
       <TextInput style={styles.input}
         onChangeText={(tsk) => setTask3(tsk)}
         placeholder="Enter first task here" />
-      <TextInput style={styles.input}
+      {/* <TextInput style={styles.input}
         onChangeText={(tsk) => setTask4(tsk)}
         placeholder="Enter first task here" />
       <TextInput style={styles.input}
         onChangeText={(tsk) => setTask5(tsk)}
-        placeholder="Enter first task here" />
+        placeholder="Enter first task here" /> */}
       <Pressable
         style={{backgroundColor:"thistle",
         borderRadius:50,
@@ -120,7 +128,7 @@ return(
                             if(noTaskDuplicatesOrEmpties())
                             {
                                 setErr('');
-                                navigation.navigate('BoardPage',{task1: t1,task2: t2,task3: t3,task4: t4,task5: t5})
+                                navigation.navigate('BoardPage',{task1: t1,task2: t2,task3: t3})//,task4: t4,task5: t5})
                             }
                         }}>
           <Text style={{fontSize:18}}>Let us begin ! </Text>
