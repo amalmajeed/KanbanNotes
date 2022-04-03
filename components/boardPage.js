@@ -7,15 +7,20 @@
  */
 
 import React,{useState} from 'react';
-import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, Pressable, View, FlatList, TextInput} from 'react-native';
+import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, FlatList, TextInput} from 'react-native';
+
+// GLOBAL ENVIRONMENT VARIABLES
+
+var taskCount = 3;
 
 /**
  * FUNCTION - KanbanBoard()
  * 
- * Purpose : This function returns the drag and drop kanban board page of the application. The board page is rendered using 
- *           the 'react-native-draganddrop-board' package. The tasks that are entered in the input form of the homePage are 
+ * Purpose : This function returns the touch and push kanban board page of the application. The board page is rendered using 
+ *           three Flatlist components. The tasks that are entered in the input form of the homePage are 
  *           passed to the boardPage as a parameter which are then rendered to cards in three columns named 'To Do', 'In Progress'
- *           and 'Done' respectively. The user has the ability to drag and drop the card from one column to the next.
+ *           and 'Done' respectively. Initially all the cards are in the 'To Do' column. The user has the ability to press the
+ *           card and it will be removed from its current column and will be assigned to the next column.
  * 
  * Parameter(s):
  * <1> navigation - property that is passed to every component that is part of the navigation stack in the App. This property
@@ -28,7 +33,8 @@ import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, Pressable, Vie
  * 
  * <1> All the styling components are defined within the Stylesheet object 'styles'.
  * <2> Title logo image is stored in the assets folder.
- * <3> The user has entered the names of the 5 tasks in the homepage before pressing the button to redirect.
+ * <3> The user has entered the names of the 3 tasks in the homepage before pressing the button to redirect.
+ * <4> Global variable with the task count has been initialized.
  * 
  * 
  * Returns: 
@@ -36,7 +42,7 @@ import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, Pressable, Vie
  *     of the homepage for the user to interact with.
  * 
  * Side effect:
- * <1> 'react-native-draganddrop-board' updates the cards.
+ * <1> Global variable taskCount gets updated everytime a new task is added.
  *
  */
 
@@ -46,52 +52,123 @@ export default KanbanBoard = ({navigation,route}) => {
     const {task1,task2,task3}=route.params; //,task4,task5} = route.params;
     const [tx,setTx] = useState("");
     const [newTask, setNew] = useState("");
-    //const [renderer,setRenderer] = useState(0);
+    const [flag,setFlag] = useState(true);
     const [data, setData] = useState([
       {
         id: 1,
         name: 'TO DO',
-        rcount: 3, //5,
         rows: [{id:'1',name: task1},
         {id:'2',name:task2},
         {id:'3',name:task3}]
-        // {id:'4',name:task4},
-        // {id:'5',name:task5}]
       },
       {
         id: 2,
         name: 'IN PROGRESS',
-        rcount: 0,
         rows: []
         
       },
       {
         id: 3,
         name: 'DONE',
-        rcount: 0,
         rows: []
       }
     ]);
 
-    const pushToMove = (elem) => {
-        console.log("Element pressed was:",elem.name,"\n");
+/**
+ * FUNCTION - pushToMoveTODO()
+ * 
+ * Purpose : This function moves a task card from 'To Do' column to 'In Progress' column
+ * 
+ * Parameter(s):
+ * <1> elem - an item from the array representing rows of the TO DO object in data
+ * 
+ * Precondition(s):
+ * 
+ * <1> All the styling components are defined within the Stylesheet object 'styles'.
+ * <2> Global variable with the task count has been initialized.
+ * 
+ * Returns: 
+ * N/A
+ * 
+ * Side effect:
+ * <1> Modifies the state hooks 'data' and 'flag'
+ *
+ */
+    const pushToMoveTODO = (elem) => {
+      console.log("Element pressed to do was:",elem.name,"\n");
+      var temp = data;
+      const index = temp[0].rows.findIndex(obj => {return obj.name == elem.name;});
+      console.log("Returned index of pressed item:",index,"\n");
+      var pushValue = temp[0].rows.splice(index,1);
+      temp[1].rows.push(pushValue[0]);
+      setData(temp);
+      if(flag)
+      {
+        setFlag(false);
+      }
+      else
+      {
+        setFlag(true);
+      }
+      console.log("DATA :",data,"\n");    
     }
+
+/**
+ * FUNCTION - pushToMoveINPROG()
+ * 
+ * Purpose : This function moves a task card from 'In Progress' column to 'Done' column
+ * 
+ * Parameter(s):
+ * <1> elem - an item from the array representing rows of the IN PROGRESS object in data
+ * 
+ * Precondition(s):
+ * 
+ * <1> All the styling components are defined within the Stylesheet object 'styles'.
+ * <2> Global variable with the task count has been initialized.
+ * 
+ * Returns: 
+ * N/A
+ * 
+ * Side effect:
+ * <1> Modifies the state hooks 'data' and 'flag'
+ *
+ */
+
+    const pushToMoveINPROG = (elem) => {
+      console.log("Element pressed in progress was:",elem.name,"\n");
+      var temp = data;
+      const index = temp[1].rows.findIndex(obj => {return obj.name == elem.name;});
+      console.log("Returned index of pressed item:",index,"\n");
+      var pushValue = temp[1].rows.splice(index,1);
+      temp[2].rows.push(pushValue[0]);
+      setData(temp);
+      if(flag)
+      {
+        setFlag(false);
+      }
+      else
+      {
+        setFlag(true);
+      }
+      console.log("DATA :",data,"\n")
+    }
+
+  const pushToMoveDONE = (elem) => {
+    console.log("Element pressed done was:",elem.name,"\n");
+  }
 
     const addTask = () => {
       if(newTask!=""){
         var temp = data;
-        temp[0].rcount = temp[0].rcount+1
-        var enteredTask = {id:temp[0].rcount.toString(), name:newTask};
+        taskCount = taskCount + 1; 
+        var enteredTask = {id:taskCount.toString(), name:newTask};
         console.log("New Task object created:",enteredTask,"\n");
-        //data[0].rows[newEntryId] = enteredTask;
         temp[0].rows.push(enteredTask);
         console.log("TEMP DATA !!",temp,"\n");
-        setData([...data, temp]);
+        setData(temp);
         console.log("FINAL DATA !!",data,"\n");
-        //setRenderer(renderer+1);
         setNew("");
         console.log("************************************ END ***********************************\n");
-        //console.log("STATE DATA !!",RenderData,"\n");
       }
       else
       {
@@ -104,7 +181,6 @@ export default KanbanBoard = ({navigation,route}) => {
       <SafeAreaView style={styles.board_container}>
         <SafeAreaView style={styles.board_title}>
           <Image style ={{ transform:[{scale:0.27}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
-          {/* <Text>{data[0].rcount}</Text> */}
         </SafeAreaView>
         <SafeAreaView style={styles.board}>
           <SafeAreaView style={styles.columns}>
@@ -113,14 +189,13 @@ export default KanbanBoard = ({navigation,route}) => {
             </Text>
             <FlatList
             data ={data[0].rows}
-            extraData = {data}
+            extraData = {flag}
             renderItem={({item})=>(
-              // TO BE DONE !
-              <TouchableOpacity style={styles.cards} onPress={()=>pushToMove(item)}>
-                <Text>{item.name}</Text>
-                </TouchableOpacity>
-              
+            <TouchableOpacity style={styles.todo_cards} onPress={()=>{pushToMoveTODO(item);}}>
+              <Text>{item.name}</Text>
+            </TouchableOpacity>
             )}
+            keyExtractor={(item, index) => index.toString()}
            />
            
           </SafeAreaView>
@@ -130,14 +205,14 @@ export default KanbanBoard = ({navigation,route}) => {
             </Text>
             <FlatList
             data ={data[1].rows}
-            //extraData = {renderer}
+            extraData = {flag}
             renderItem={({item})=>(
-              // TO BE DONE !
-              <TouchableOpacity style={styles.cards} onPress={()=>pushToMove(item)}>
+              <TouchableOpacity style={styles.inprog_cards} onPress={()=>{pushToMoveINPROG(item)}}>
                 <Text>{item.name}</Text>
                 </TouchableOpacity>
               
             )}
+            keyExtractor={(item, index) => index.toString()}
            />
           </SafeAreaView>
           <SafeAreaView style={styles.columns}>
@@ -146,14 +221,14 @@ export default KanbanBoard = ({navigation,route}) => {
             </Text>
             <FlatList
             data ={data[2].rows}
-            //extraData = {renderer}
+            extraData = {flag}
             renderItem={({item})=>(
-              // TO BE DONE !
-              <TouchableOpacity style={styles.cards} onPress={()=>pushToMove(item)}>
+              <TouchableOpacity style={styles.done_cards} onPress={()=>{pushToMoveDONE(item)}}>
                 <Text>{item.name}</Text>
                 </TouchableOpacity>
               
             )}
+            keyExtractor={(item, index) => index.toString()}
            />
           </SafeAreaView>
           
@@ -191,8 +266,6 @@ export default KanbanBoard = ({navigation,route}) => {
         board:{
         flex:3,
         flexDirection:'row',
-        // alignItems: 'center',
-        // justifyContent: 'center',
         backgroundColor:'#0197f6',
         resizeMode:'contain'
       },
@@ -201,7 +274,6 @@ export default KanbanBoard = ({navigation,route}) => {
         flex:1,
         backgroundColor:"#bbb",
         alignItems:"center",
-        // justifyContent:"center",
         margin:3,
         borderRadius:10
       },
@@ -211,12 +283,34 @@ export default KanbanBoard = ({navigation,route}) => {
         marginBottom:30
       },
 
-      cards:{
+      todo_cards:{
         backgroundColor:"beige",
         alignItems:"center",
         justifyContent:"center",
-        borderStyle:'dashed',
-        borderRadius:30,
+        borderStyle:'solid',
+        borderRadius:15,
+        borderWidth:2,
+        width:100,
+        marginTop:15,
+        padding:10
+      },
+      inprog_cards:{
+        backgroundColor:"gold",
+        alignItems:"center",
+        justifyContent:"center",
+        borderStyle:'solid',
+        borderRadius:15,
+        borderWidth:2,
+        width:100,
+        marginTop:15,
+        padding:10
+      },
+      done_cards:{
+        backgroundColor:"greenyellow",
+        alignItems:"center",
+        justifyContent:"center",
+        borderStyle:'solid',
+        borderRadius:15,
         borderWidth:2,
         width:100,
         marginTop:15,
