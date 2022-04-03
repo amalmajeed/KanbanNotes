@@ -4,5 +4,7 @@
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://vc-ra5.amalmajeed.todonotes.exp.direct",
   "packagerNgrokUrl": "https://vc-ra5.amalmajeed.todonotes.exp.direct",
-  "ngrokPid": 38568
+  "ngrokPid": 39059,
+  "packagerPid": null,
+  "webpackServerPort": null
 }

@@ -86,7 +86,7 @@ export default KanbanBoard = ({navigation,route}) => {
             data ={data[0].rows}
             renderItem={({item})=>(
               // TO BE DONE !
-              <TouchableOpacity style={styles.cards} onPress={pushToMove(item)}>
+              <TouchableOpacity style={styles.cards} onPress={()=>pushToMove(item)}>
                 <Text>{item.name}</Text>
                 </TouchableOpacity>
               
