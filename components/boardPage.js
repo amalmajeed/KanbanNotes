@@ -224,7 +224,7 @@ export default KanbanBoard = ({navigation,route}) => {
             extraData = {flag}
             renderItem={({item})=>(
               <TouchableOpacity style={styles.done_cards} onPress={()=>{pushToMoveDONE(item)}}>
-                <Text>{item.name}</Text>
+                <Text style={{ textDecorationLine:'line-through'}}>{item.name}</Text>
                 </TouchableOpacity>
               
             )}
@@ -290,7 +290,7 @@ export default KanbanBoard = ({navigation,route}) => {
         borderStyle:'solid',
         borderRadius:15,
         borderWidth:2,
-        width:100,
+        width:120,
         marginTop:15,
         padding:10
       },
@@ -301,7 +301,7 @@ export default KanbanBoard = ({navigation,route}) => {
         borderStyle:'solid',
         borderRadius:15,
         borderWidth:2,
-        width:100,
+        width:120,
         marginTop:15,
         padding:10
       },
@@ -312,7 +312,7 @@ export default KanbanBoard = ({navigation,route}) => {
         borderStyle:'solid',
         borderRadius:15,
         borderWidth:2,
-        width:100,
+        width:120,
         marginTop:15,
         padding:10
       },
