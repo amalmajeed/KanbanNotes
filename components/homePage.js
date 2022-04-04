@@ -7,15 +7,15 @@
  */
 
 import React, {useState} from 'react';
-import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable, Alert } from 'react-native';
 
 
 /**
  * FUNCTION - HomePage()
  * 
  * Purpose : This function returns the landing page of the application. The landing page consists of a Logo, and a prompt
- *           with 5 input boxes, for the users to enter their 5 daily focuses to do. After entering the 5 to do tasks,
- *           the button press takes the user to the Kanban board.
+ *           with 3 input boxes, for the users to enter their first 3 daily focuses to do. After that the button press 
+ *           takes the user to the Kanban board.
  * 
  * Parameter(s):
  * <1> navigation - property that is passed to every component that is part of the navigation stack in the App. This property
@@ -31,9 +31,9 @@ import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable } from 'rea
  *     and Pressable elements of the homepage for the user to interact with.
  * 
  * Side effect:
- * <1> Changes the state hooks t1, t2, t3, t4 and t5 from empty string to task names as per user input.
- * <2> On button press, the navigation prop navigates to the BoardPage route to render the kanban board with the above mentioned
- *     list elements.
+ * <1> Changes the state hooks t1, t2 and t3 from empty string to task names as per user input.
+ * <2> On button press, the navigation prop navigates to the BoardPage or HelpPage route to render the kanban board or provide 
+ *     instructions respectively.
  *
  */
 
@@ -44,15 +44,45 @@ export default HomePage = ({navigation}) => {
   const [t3,setTask3] = useState("");
   const [errMsg,setErr] = useState("");
 
-  const noTaskDuplicatesOrEmpties = () =>
+/**
+ * FUNCTION - noTaskEmpties()
+ * 
+ * Purpose : This function checks for empty entries initially
+ * 
+ * Parameter(s):
+ * N/A
+ * 
+ * Precondition(s):
+ * 
+ * <1> State hooks 't1','t2' and 't3' were initialized.
+ * 
+ * 
+ * Returns: 
+ * N/A
+ * 
+ * Side effect:
+ * <1> Modifies the state hooks 't1', 't2' and 't3'.
+ *
+ */
+
+  const noTaskEmpties = () =>
   {
       console.log("The state inside the function \n t1:",t1,"t2:",t2,"t3:",t3);
       if((t1=="")||(t2=="")||(t3==""))
       {
-          setErr("Empty task entry(s) found ! Don't slack now, we have the day to conquer ! ");
+          Alert.alert(
+            "Input Error",
+            "Empty task entry(s) found ! Enter 3 tasks",
+            [
+              {
+                text: "Retry",
+                onPress: () => console.log("Retry Pressed"),
+                style: "cancel"
+              }
+            ]
+          );
           return(false);
       }
-    
       const l1 = t1.toLowerCase();
       const l2 = t2.toLowerCase();
       const l3 = t3.toLowerCase();
@@ -64,7 +94,17 @@ export default HomePage = ({navigation}) => {
             return(true)
         }
       }
-      setErr("Duplicate task entries found ! Retry !");
+      Alert.alert(
+        "Input Error",
+        "Duplicate task entries found !",
+        [
+          {
+            text: "Retry",
+            onPress: () => console.log("Retry Pressed"),
+            style: "cancel"
+          }
+        ]
+      );
       return(false);
   }
 
@@ -72,11 +112,6 @@ return(
   <SafeAreaView style={styles.home_container}>
     <SafeAreaView style={styles.home_title}>
         <Image style ={{ transform:[{scale:0.50}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
-    </SafeAreaView>
-    <SafeAreaView>
-        <Text style={{color:"black"}}>
-            {errMsg}
-        </Text>
     </SafeAreaView>
     <SafeAreaView style={styles.home_midsection}>
       <Text style={styles.text_title}> Enter your 3 focus tasks for today !</Text>
@@ -103,7 +138,7 @@ return(
         width:200,
         alignItems:"center"}}
             onPress={() => {console.log("Pressed");
-                            if(noTaskDuplicatesOrEmpties())
+                            if(noTaskEmpties())
                             {
                                 setErr('');
                                 navigation.navigate('BoardPage',{task1: t1,task2: t2,task3: t3})

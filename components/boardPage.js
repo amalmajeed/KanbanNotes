@@ -49,8 +49,7 @@ var taskCount = 3;
 
 export default KanbanBoard = ({navigation,route}) => {
 
-    const {task1,task2,task3}=route.params; //,task4,task5} = route.params;
-    const [tx,setTx] = useState("");
+    const {task1,task2,task3}=route.params;
     const [newTask, setNew] = useState("");
     const [flag,setFlag] = useState(true);
     const [data, setData] = useState([
@@ -74,6 +73,26 @@ export default KanbanBoard = ({navigation,route}) => {
       }
     ]);
 
+/**
+ * FUNCTION - deletionAlert()
+ * 
+ * Purpose : This function adds a new task to 'To Do' column
+ * 
+ * Parameter(s):
+ * 
+ * <1> code - 1 for TO DO element, 2 for 'IN PROGRESS' element and 3 for 'DONE' element.
+ * <2> elem - element from the flatlist to be removed
+ * 
+ * Precondition(s):
+ * <1> A task card was long pressed
+ * 
+ * Returns: 
+ * N/A
+ * 
+ * Side effect:
+ * <1> Generates an alert pop up on phone.
+ *
+ */
     const deletionAlert = (code,elem) =>
     Alert.alert(
       "Do you want to delete the below task ?",
@@ -171,56 +190,97 @@ export default KanbanBoard = ({navigation,route}) => {
     console.log("Element pressed done was:",elem.name,"\n");
   }
 
-    const addTask = () => {
-      if(newTask!=""){
-        var temp = data;
-        taskCount = taskCount + 1; 
-        var enteredTask = {id:taskCount.toString(), name:newTask};
-        console.log("New Task object created:",enteredTask,"\n");
-        temp[0].rows.push(enteredTask);
-        console.log("TEMP DATA !!",temp,"\n");
-        setData(temp);
-        console.log("FINAL DATA !!",data,"\n");
-        setNew("");
-        console.log("************************************ END ***********************************\n");
-      }
-      else
-      {
-        console.log("Empty Task entered ! Try again ! \n");
-      }
-    }
+/**
+ * FUNCTION - addTask()
+ * 
+ * Purpose : This function adds a new task to 'To Do' column
+ * 
+ * Parameter(s):
+ * N/A
+ * 
+ * Precondition(s):
+ * 
+ * <1> State hooks 'data' and 'newTask' were initialized
+ * 
+ * Returns: 
+ * N/A
+ * 
+ * Side effect:
+ * <1> Modifies the state hooks 'data' and 'newTask'
+ *
+ */
 
-    const removeTask = (code,elem) =>
-    {
+  const addTask = () => {
+    if(newTask!=""){
       var temp = data;
-      if(code == 1)
-      {
-        const index = temp[0].rows.findIndex(obj => {return obj.name == elem.name;});
-        console.log("Returned index of longpressed item:",index,"\n");
-        temp[0].rows.splice(index,1);
-      }
-      if(code == 2)
-      {
-        const index = temp[1].rows.findIndex(obj => {return obj.name == elem.name;});
-        console.log("Returned index of longpressed item:",index,"\n");
-        temp[1].rows.splice(index,1);
-      }
-      if(code == 3)
-      {
-        const index = temp[2].rows.findIndex(obj => {return obj.name == elem.name;});
-        console.log("Returned index of longpressed item:",index,"\n");
-        temp[2].rows.splice(index,1);
-      }
+      taskCount = taskCount + 1; 
+      var enteredTask = {id:taskCount.toString(), name:newTask};
+      console.log("New Task object created:",enteredTask,"\n");
+      temp[0].rows.push(enteredTask);
+      console.log("TEMP DATA !!",temp,"\n");
       setData(temp);
-      if(flag)
-      {
-        setFlag(false);
-      }
-      else
-      {
-        setFlag(true);
-      }
+      console.log("FINAL DATA !!",data,"\n");
+      setNew("");
+      console.log("************************************ END ***********************************\n");
     }
+    else
+    {
+      console.log("Empty Task entered ! Try again ! \n");
+    }
+  }
+
+/**
+ * FUNCTION - removeTask()
+ * 
+ * Purpose : This function removes a task whose card had been long pressed
+ * 
+ * Parameter(s):
+ * <1> code - 1 for TO DO element, 2 for 'IN PROGRESS' element and 3 for 'DONE' element.
+ * <2> elem - element from the flatlist to be removed
+ * 
+ * Precondition(s):
+ * 
+ * <1> State hooks 'data' and 'flag' were initialized
+ * 
+ * Returns: 
+ * N/A
+ * 
+ * Side effect:
+ * <1> Modifies the state hooks 'data' and 'flag'
+ *
+ */
+
+  const removeTask = (code,elem) =>
+  {
+    var temp = data;
+    if(code == 1)
+    {
+      const index = temp[0].rows.findIndex(obj => {return obj.name == elem.name;});
+      console.log("Returned index of longpressed item:",index,"\n");
+      temp[0].rows.splice(index,1);
+    }
+    if(code == 2)
+    {
+      const index = temp[1].rows.findIndex(obj => {return obj.name == elem.name;});
+      console.log("Returned index of longpressed item:",index,"\n");
+      temp[1].rows.splice(index,1);
+    }
+    if(code == 3)
+    {
+      const index = temp[2].rows.findIndex(obj => {return obj.name == elem.name;});
+      console.log("Returned index of longpressed item:",index,"\n");
+      temp[2].rows.splice(index,1);
+    }
+    setData(temp);
+    if(flag)
+    {
+      setFlag(false);
+    }
+    else
+    {
+      setFlag(true);
+    }
+  }
 
     return (
       <SafeAreaView style={styles.board_container}>

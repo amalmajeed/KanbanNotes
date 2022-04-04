@@ -26,57 +26,57 @@ export default HelpPage = ({navigation}) => {
     );
     }
     
-    //||==================**************************** STYLING COMPONENTS ****************************==================||
-    
-    const styles = StyleSheet.create({
-        help_container: {
-            flex: 1,
-            backgroundColor: '#0197f6',
-            alignItems: 'center',
-            justifyContent: 'center',
-            resizeMode:'contain',
-          },
-        
-          help_title:{flex:0.3,
-            alignItems: 'center',
-            justifyContent: 'center',
-            resizeMode:'contain',
-          },
-    
-          text_title:{
-            fontSize:25,
-            fontFamily:"AmericanTypewriter", 
-            fontWeight:"bold",
-            color:"white",
-            textShadowRadius:20,
-            textShadowColor:"white",
-            textDecorationLine:"underline",
-            textDecorationStyle:"double",
-            textDecorationColor:"white",
-            marginBottom:20,
-            paddingTop:20,
-            paddingBottom:20,
-            width:390,
-            textAlign:"center", 
-            textAlignVertical:"center"},
+//||==================**************************** STYLING COMPONENTS ****************************==================||
 
-            text_content:{
-                fontSize:20,
-                fontFamily:"AmericanTypewriter", 
-                marginBottom:15,
-                paddingTop:20,
-                paddingBottom:20,
-                width:300,
-                textAlign:"center", 
-                textAlignVertical:"center" },
-        
-           help_midsection: {
-            flex: 0.7,
-            paddingTop:0,
-            alignItems: 'center',
-            resizeMode:'contain',
-            position:"relative",
-            width:"100%"
-          },
-        
-    })
+const styles = StyleSheet.create({
+help_container: {
+    flex: 1,
+    backgroundColor: '#0197f6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    resizeMode:'contain',
+    },
+
+    help_title:{flex:0.3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    resizeMode:'contain',
+    },
+
+    text_title:{
+    fontSize:25,
+    fontFamily:"AmericanTypewriter", 
+    fontWeight:"bold",
+    color:"white",
+    textShadowRadius:20,
+    textShadowColor:"white",
+    textDecorationLine:"underline",
+    textDecorationStyle:"double",
+    textDecorationColor:"white",
+    marginBottom:20,
+    paddingTop:20,
+    paddingBottom:20,
+    width:390,
+    textAlign:"center", 
+    textAlignVertical:"center"},
+
+    text_content:{
+        fontSize:20,
+        fontFamily:"AmericanTypewriter", 
+        marginBottom:15,
+        paddingTop:20,
+        paddingBottom:20,
+        width:300,
+        textAlign:"center", 
+        textAlignVertical:"center" },
+
+    help_midsection: {
+    flex: 0.7,
+    paddingTop:0,
+    alignItems: 'center',
+    resizeMode:'contain',
+    position:"relative",
+    width:"100%"
+    },
+
+})
