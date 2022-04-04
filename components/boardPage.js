@@ -3,11 +3,11 @@
  *  author: Amal Majeed <amf856@uregina.ca>
  *  version: 0.1
  *  date-created: mar-27-2022 
- *  last-modified: apr-03-2022
+ *  last-modified: apr-04-2022
  */
 
 import React,{useState} from 'react';
-import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, FlatList, TextInput} from 'react-native';
+import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, FlatList, TextInput, Alert} from 'react-native';
 
 // GLOBAL ENVIRONMENT VARIABLES
 
@@ -73,6 +73,20 @@ export default KanbanBoard = ({navigation,route}) => {
         rows: []
       }
     ]);
+
+    const deletionAlert = (code,elem) =>
+    Alert.alert(
+      "Do you want to delete the below task ?",
+      elem.name,
+      [
+        {
+          text: "No",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "Yes, delete!", onPress: () => removeTask(code,elem) }
+      ]
+    );
 
 /**
  * FUNCTION - pushToMoveTODO()
@@ -174,8 +188,39 @@ export default KanbanBoard = ({navigation,route}) => {
       {
         console.log("Empty Task entered ! Try again ! \n");
       }
-      
-  }
+    }
+
+    const removeTask = (code,elem) =>
+    {
+      var temp = data;
+      if(code == 1)
+      {
+        const index = temp[0].rows.findIndex(obj => {return obj.name == elem.name;});
+        console.log("Returned index of longpressed item:",index,"\n");
+        temp[0].rows.splice(index,1);
+      }
+      if(code == 2)
+      {
+        const index = temp[1].rows.findIndex(obj => {return obj.name == elem.name;});
+        console.log("Returned index of longpressed item:",index,"\n");
+        temp[1].rows.splice(index,1);
+      }
+      if(code == 3)
+      {
+        const index = temp[2].rows.findIndex(obj => {return obj.name == elem.name;});
+        console.log("Returned index of longpressed item:",index,"\n");
+        temp[2].rows.splice(index,1);
+      }
+      setData(temp);
+      if(flag)
+      {
+        setFlag(false);
+      }
+      else
+      {
+        setFlag(true);
+      }
+    }
 
     return (
       <SafeAreaView style={styles.board_container}>
@@ -184,14 +229,14 @@ export default KanbanBoard = ({navigation,route}) => {
         </SafeAreaView>
         <SafeAreaView style={styles.board}>
           <SafeAreaView style={styles.columns}>
-            <Text style={styles.column_heading}>
+            <Text style={styles.column_heading_1}>
               TO DO
             </Text>
             <FlatList
             data ={data[0].rows}
             extraData = {flag}
             renderItem={({item})=>(
-            <TouchableOpacity style={styles.todo_cards} onPress={()=>{pushToMoveTODO(item);}}>
+            <TouchableOpacity style={styles.todo_cards} onLongPress ={()=>{deletionAlert(1,item);}} onPress={()=>{pushToMoveTODO(item);}}>
               <Text>{item.name}</Text>
             </TouchableOpacity>
             )}
@@ -200,14 +245,14 @@ export default KanbanBoard = ({navigation,route}) => {
            
           </SafeAreaView>
           <SafeAreaView style={styles.columns}>
-          <Text style={styles.column_heading}>
+          <Text style={styles.column_heading_2}>
               IN PROGRESS
             </Text>
             <FlatList
             data ={data[1].rows}
             extraData = {flag}
             renderItem={({item})=>(
-              <TouchableOpacity style={styles.inprog_cards} onPress={()=>{pushToMoveINPROG(item)}}>
+              <TouchableOpacity style={styles.inprog_cards} onLongPress ={()=>{deletionAlert(2,item);}} onPress={()=>{pushToMoveINPROG(item)}}>
                 <Text>{item.name}</Text>
                 </TouchableOpacity>
               
@@ -216,15 +261,15 @@ export default KanbanBoard = ({navigation,route}) => {
            />
           </SafeAreaView>
           <SafeAreaView style={styles.columns}>
-          <Text style={styles.column_heading}>
+          <Text style={styles.column_heading_3}>
               DONE
             </Text>
             <FlatList
             data ={data[2].rows}
             extraData = {flag}
             renderItem={({item})=>(
-              <TouchableOpacity style={styles.done_cards} onPress={()=>{pushToMoveDONE(item)}}>
-                <Text style={{ textDecorationLine:'line-through'}}>{item.name}</Text>
+              <TouchableOpacity style={styles.done_cards} onLongPress ={()=>{deletionAlert(3,item);}} onPress={()=>{pushToMoveDONE(item)} }>
+                <Text style={{ textDecorationLine:'line-through', textDecorationStyle:"double",textDecorationColor:"red"}}>{item.name}</Text>
                 </TouchableOpacity>
               
             )}
@@ -254,33 +299,59 @@ export default KanbanBoard = ({navigation,route}) => {
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        resizeMode:'contain'
+        resizeMode:'contain',
+        borderWidth:5
       },
     
       board_title:{flex:0.5,
         alignItems: 'center',
         justifyContent: 'center',
         resizeMode:'contain',
-      backgroundColor:'#0197f6'},
+      backgroundColor:'#0197f6',
+      width:404},
       
         board:{
-        flex:3,
+        flex:2,
         flexDirection:'row',
         backgroundColor:'#0197f6',
-        resizeMode:'contain'
+        resizeMode:'contain',
+        marginBottom:10
       },
       
       columns:{
         flex:1,
-        backgroundColor:"#bbb",
+        backgroundColor:"turquoise",
         alignItems:"center",
         margin:3,
         borderRadius:10
       },
 
-      column_heading:{
+      column_heading_1:{
         marginTop:30,
-        marginBottom:30
+        marginBottom:30,
+        fontFamily:'Avenir-Black',
+        color:'black',
+        textShadowColor:"beige",
+        textShadowRadius:6,
+        textShadowOffset:{width: 3, height: 5}
+      },
+      column_heading_2:{
+        marginTop:30,
+        marginBottom:30,
+        fontFamily:'Avenir-Black',
+        color:'black',
+        textShadowColor:"gold",
+        textShadowRadius:6,
+        textShadowOffset:{width: 3, height: 5}
+      },
+      column_heading_3:{
+        marginTop:30,
+        marginBottom:30,
+        fontFamily:'Avenir-Black',
+        color:'black',
+        textShadowColor:"greenyellow",
+        textShadowRadius:6,
+        textShadowOffset:{width: 3, height: 5}
       },
 
       todo_cards:{
@@ -317,7 +388,7 @@ export default KanbanBoard = ({navigation,route}) => {
         padding:10
       },
 
-      board_bottom:{flex:0.3,
+      board_bottom:{flex:0.25,
         flexDirection:'row',
         alignItems: 'center',
         justifyContent: 'center',

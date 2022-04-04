@@ -3,7 +3,7 @@
  *  author: Amal Majeed <amf856@uregina.ca>
  *  version: 0.1
  *  date-created: mar-27-2022 
- *  last-modified: apr-03-2022
+ *  last-modified: apr-04-2022
  */
 
 import React, {useState} from 'react';
@@ -71,7 +71,7 @@ export default HomePage = ({navigation}) => {
 return(
   <SafeAreaView style={styles.home_container}>
     <SafeAreaView style={styles.home_title}>
-        <Image style ={{ transform:[{scale:0.27}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
+        <Image style ={{ transform:[{scale:0.50}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
     </SafeAreaView>
     <SafeAreaView>
         <Text style={{color:"black"}}>
@@ -82,16 +82,19 @@ return(
       <Text style={styles.text_title}> Enter your 3 focus tasks for today !</Text>
       <TextInput style={styles.input}
         onChangeText={(tsk) => setTask1(tsk)}
-        placeholder="Enter task 2 here" />
+        placeholder="Enter task 1 here" />
       <TextInput style={styles.input}
         onChangeText={(tsk) => setTask2(tsk)}
         placeholder="Enter task 2 here" />
       <TextInput style={styles.input}
         onChangeText={(tsk) => setTask3(tsk)}
-        placeholder="Enter first task here" />
+        placeholder="Enter task 3 here" />
       <Pressable
-        style={{backgroundColor:"thistle",
+        style={{backgroundColor:"lime",
         borderRadius:50,
+        shadowColor:"white",
+        shadowRadius:10,
+        shadowOpacity:1,
         marginBottom:50, 
         marginTop:30,
         paddingTop:20,
@@ -107,6 +110,22 @@ return(
                             }
                         }}>
           <Text style={{fontSize:18}}>Let us begin ! </Text>
+        </Pressable>
+        <Pressable
+        style={{backgroundColor:"thistle",
+        borderRadius:70,
+        shadowColor:"white",
+        shadowRadius:10,
+        shadowOpacity:1,
+        marginBottom:50, 
+        marginTop:30,
+        paddingTop:20,
+        paddingBottom:20,
+        borderWidth: 4,
+        width:100,
+        alignItems:"center"}}
+            onPress={() => { navigation.navigate('HelpPage'); }}>
+          <Text style={{fontSize:18}}> ? Help </Text>
         </Pressable>
     </SafeAreaView>
   </SafeAreaView>
@@ -131,8 +150,12 @@ const styles = StyleSheet.create({
       },
 
       text_title:{
-        fontSize:20,
+        fontSize:21,
         fontFamily:"AmericanTypewriter", 
+        fontWeight:"bold",
+        color:"black",
+        textShadowColor:"white",
+        textShadowRadius:10,
         marginBottom:15,
         paddingTop:20,
         paddingBottom:20,
