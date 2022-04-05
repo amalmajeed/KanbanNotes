@@ -25,13 +25,20 @@ This project was developed as a part of my coursework for CS 855: Mobile Computi
 - Delete the 'node_modules' directory locally or remotely.
 - CD to the cloned repo directory in local using the chosen terminal application all the way to inside /toDoNotes where 'package.json' is located.
 - From the terminal run 'sudo npm install' or 'sudo yarn install' (recommended to use yarn) to configure the package dependencies from 'package.json' file.
+- Install an expo developer client app such as 'Expo Go' on your mobile device (https://apps.apple.com/us/app/expo-go/id982107779)
 
 ### Configuration instructions
 
+- Create an expo account (https://expo.dev/) (IGNORE if already a user)
+- Login to expo account using 'expo login' command from terminal
 - CD to the cloned repo directory in local using the chosen terminal application all the way to inside /toDoNotes.
-- Run 'expo start'
-- 
+- By default the app has been configured to run in tunnel mode which is faster due to encapsulation in the 'package.json' under the start section under scripts section. (Remove 'tunnel' and save the file to run normally)
+- Run 'expo start' or 'expo start -c' to clear cache from previous runs.
+- Open camera app to scan the generated QR code to automatically open Expo Go on your mobile device or manually open expo go and connect to the project by signing in with your expo account credentials to open the app.
 
+### Operation instructions
+
+1. Home
 
 #### Note: When you Add a project Add it to the README for ease of finding it
 #### Note: Please do not put the project link to reference your local forked repo. Always link it to this repo after it's been merged with main.
