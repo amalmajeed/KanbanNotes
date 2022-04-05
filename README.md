@@ -40,6 +40,9 @@ This project was developed as a part of my coursework for CS 855: Mobile Computi
 
 1. At the home page
 
+![WhatsApp Image 2022-04-05 at 2 26 40 PM](https://user-images.githubusercontent.com/11253406/161844002-22cbd4e8-6772-4c2d-b648-3fd10705c158.jpeg)
+
+
 #### Note: When you Add a project Add it to the README for ease of finding it
 #### Note: Please do not put the project link to reference your local forked repo. Always link it to this repo after it's been merged with main.
 
