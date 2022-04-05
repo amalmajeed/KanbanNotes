@@ -9,20 +9,29 @@
 
 This project was developed as a part of my coursework for CS 855: Mobile Computing Winter 2022. The aim of this project was to learn the basics of mobile development using react native and expo. This project is a Kanban board for your iOS device for ad-hoc task tracking on the go. I like to create a list of acheivables before beginning the day using post it notes and by the end of the day I finish them and the satisfaction of crossing off the work I had to do is extremely fulfilling and that is what I aimed to replicate using this application which is a Kanban board with three columns 'TO DO', 'IN PROGRESS' and 'DONE' to track the status of your daily acheivables which are rendered as color coded task cards based on their status.
 
-### Contribution Guidelines
 
-The contribution guidelines are as per the guide [HERE](https://github.com/larymak/Python-project-Scripts/blob/main/CONTRIBUTING.md).
+### Software pre-requisites
 
-### Instructions
+-  Node.js and node package manager for mac/windows/linux (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+-  Expo client for mac/windows/linux (https://docs.expo.dev/workflow/expo-cli/)
+-  Terminal such as Bash, CMD or Zshell.
+
+### Installation instructions
 
 - Fork this Repository
-- Clone your forked repository
-- Add your scripts
-- Commit & Push
-- Create a pull request
-- Star this repository
-- Wait for Pull Request to merge
-- Celebrate, your first step into the open Source World and contribute more
+- Clone your forked repository to your local
+- Delete the 'node_modules' directory locally or remotely.
+- CD to the cloned repo directory in local all the way to inside /toDoNotes.
+- From the terminal run 'sudo npm install' or 'sudo yarn install' (recommended to use yarn) to configure the package dependencies from 'package.json' file.
+
+### Configuration instructions
+
+- Fork this Repository
+- Clone your forked repository to your local
+- Delete the 'node_modules' directory locally or remotely.
+- CD to the cloned repo directory in local all the way to inside /toDoNotes.
+- From the terminal run 'sudo npm install' or 'sudo yarn install' (recommended to use yarn) to configure the package dependencies from 'package.json' file.
+
 
 #### Note: When you Add a project Add it to the README for ease of finding it
 #### Note: Please do not put the project link to reference your local forked repo. Always link it to this repo after it's been merged with main.
