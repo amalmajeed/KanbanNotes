@@ -38,8 +38,7 @@ This project was developed as a part of my coursework for CS 855: Mobile Computi
 
 ### Operation instructional video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tSJxPzLS6D4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+[![Everything Is AWESOME](https://www.youtube.com/watch?v=tSJxPzLS6D4 "Kanban Notes - How to Use")
 
 #### Note: When you Add a project Add it to the README for ease of finding it
 #### Note: Please do not put the project link to reference your local forked repo. Always link it to this repo after it's been merged with main.
