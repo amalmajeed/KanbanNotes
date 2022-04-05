@@ -2,4 +2,4 @@
 
 
 
-![Contributors](https://img.shields.io/github/contributors/amalmajeed/toDoNotes?style=plastic)
+![Contributors](https://img.shields.io/github/contributors/amalmajeed/toDoNotes?style=plastic) ![Licence](https://img.shields.io/github/license/amalmajeed/toDoNotes)
