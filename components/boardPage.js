@@ -3,7 +3,7 @@
  *  author: Amal Majeed <amf856@uregina.ca>
  *  version: 0.1
  *  date-created: mar-27-2022 
- *  last-modified: apr-04-2022
+ *  last-modified: apr-05-2022
  */
 
 import React,{useState} from 'react';
@@ -30,7 +30,6 @@ var taskCount = 3;
  *             to be done and presses the 'Lets begin!' button.
  * 
  * Precondition(s):
- * 
  * <1> All the styling components are defined within the Stylesheet object 'styles'.
  * <2> Title logo image is stored in the assets folder.
  * <3> The user has entered the names of the 3 tasks in the homepage before pressing the button to redirect.
@@ -38,8 +37,8 @@ var taskCount = 3;
  * 
  * 
  * Returns: 
- * <1> React native components to display the BoardPage elements such as a SafeAreaView encapsulating Image and Board elements
- *     of the homepage for the user to interact with.
+ * <1> React native components to display the BoardPage elements such as a SafeAreaView encapsulating Image and Flatlist with
+ *     the task card elements from the homepage for the user to interact with.
  * 
  * Side effect:
  * <1> Global variable taskCount gets updated everytime a new task is added.
@@ -47,7 +46,8 @@ var taskCount = 3;
  */
 
 
-export default KanbanBoard = ({navigation,route}) => {
+export default KanbanBoard = ({navigation,route}) => 
+{
 
     const {task1,task2,task3}=route.params;
     const [newTask, setNew] = useState("");
@@ -79,7 +79,6 @@ export default KanbanBoard = ({navigation,route}) => {
  * Purpose : This function adds a new task to 'To Do' column
  * 
  * Parameter(s):
- * 
  * <1> code - 1 for TO DO element, 2 for 'IN PROGRESS' element and 3 for 'DONE' element.
  * <2> elem - element from the flatlist to be removed
  * 
@@ -116,7 +115,6 @@ export default KanbanBoard = ({navigation,route}) => {
  * <1> elem - an item from the array representing rows of the TO DO object in data
  * 
  * Precondition(s):
- * 
  * <1> All the styling components are defined within the Stylesheet object 'styles'.
  * <2> Global variable with the task count has been initialized.
  * 
@@ -155,7 +153,6 @@ export default KanbanBoard = ({navigation,route}) => {
  * <1> elem - an item from the array representing rows of the IN PROGRESS object in data
  * 
  * Precondition(s):
- * 
  * <1> All the styling components are defined within the Stylesheet object 'styles'.
  * <2> Global variable with the task count has been initialized.
  * 
@@ -186,31 +183,32 @@ export default KanbanBoard = ({navigation,route}) => {
       console.log("DATA :",data,"\n")
     }
 
-  const pushToMoveDONE = (elem) => {
-    console.log("Element pressed done was:",elem.name,"\n");
-  }
+    const pushToMoveDONE = (elem) => 
+    {
+      console.log("Element pressed done was:",elem.name,"\n");
+    }
 
-/**
- * FUNCTION - addTask()
- * 
- * Purpose : This function adds a new task to 'To Do' column
- * 
- * Parameter(s):
- * N/A
- * 
- * Precondition(s):
- * 
- * <1> State hooks 'data' and 'newTask' were initialized
- * 
- * Returns: 
- * N/A
- * 
- * Side effect:
- * <1> Modifies the state hooks 'data' and 'newTask'
- *
- */
+  /**
+   * FUNCTION - addTask()
+   * 
+   * Purpose : This function adds a new task to 'To Do' column
+   * 
+   * Parameter(s):
+   * N/A
+   * 
+   * Precondition(s):
+   * <1> State hooks 'data' and 'newTask' were initialized
+   * 
+   * Returns: 
+   * N/A
+   * 
+   * Side effect:
+   * <1> Modifies the state hooks 'data' and 'newTask'
+   *
+   */
 
-  const addTask = () => {
+  const addTask = () => 
+  {
     if(newTask!=""){
       var temp = data;
       taskCount = taskCount + 1; 
@@ -229,26 +227,25 @@ export default KanbanBoard = ({navigation,route}) => {
     }
   }
 
-/**
- * FUNCTION - removeTask()
- * 
- * Purpose : This function removes a task whose card had been long pressed
- * 
- * Parameter(s):
- * <1> code - 1 for TO DO element, 2 for 'IN PROGRESS' element and 3 for 'DONE' element.
- * <2> elem - element from the flatlist to be removed
- * 
- * Precondition(s):
- * 
- * <1> State hooks 'data' and 'flag' were initialized
- * 
- * Returns: 
- * N/A
- * 
- * Side effect:
- * <1> Modifies the state hooks 'data' and 'flag'
- *
- */
+  /**
+   * FUNCTION - removeTask()
+   * 
+   * Purpose : This function removes a task whose card had been long pressed
+   * 
+   * Parameter(s):
+   * <1> code - 1 for TO DO element, 2 for 'IN PROGRESS' element and 3 for 'DONE' element.
+   * <2> elem - element from the flatlist to be removed
+   * 
+   * Precondition(s):
+   * <1> State hooks 'data' and 'flag' were initialized
+   * 
+   * Returns: 
+   * N/A
+   * 
+   * Side effect:
+   * <1> Modifies the state hooks 'data' and 'flag'
+   *
+   */
 
   const removeTask = (code,elem) =>
   {
@@ -282,63 +279,61 @@ export default KanbanBoard = ({navigation,route}) => {
     }
   }
 
-    return (
-      <SafeAreaView style={styles.board_container}>
-        <SafeAreaView style={styles.board_title}>
-          <Image style ={{ transform:[{scale:0.27}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
-        </SafeAreaView>
-        <SafeAreaView style={styles.board}>
-          <SafeAreaView style={styles.columns}>
-            <Text style={styles.column_heading_1}>
-              TO DO
-            </Text>
-            <FlatList
-            data ={data[0].rows}
-            extraData = {flag}
-            renderItem={({item})=>(
-            <TouchableOpacity style={styles.todo_cards} onLongPress ={()=>{deletionAlert(1,item);}} onPress={()=>{pushToMoveTODO(item);}}>
-              <Text>{item.name}</Text>
-            </TouchableOpacity>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-           />
-           
-          </SafeAreaView>
-          <SafeAreaView style={styles.columns}>
-          <Text style={styles.column_heading_2}>
-              IN PROGRESS
-            </Text>
-            <FlatList
-            data ={data[1].rows}
-            extraData = {flag}
-            renderItem={({item})=>(
-              <TouchableOpacity style={styles.inprog_cards} onLongPress ={()=>{deletionAlert(2,item);}} onPress={()=>{pushToMoveINPROG(item)}}>
-                <Text>{item.name}</Text>
-                </TouchableOpacity>
-              
-            )}
-            keyExtractor={(item, index) => index.toString()}
-           />
-          </SafeAreaView>
-          <SafeAreaView style={styles.columns}>
-          <Text style={styles.column_heading_3}>
-              DONE
-            </Text>
-            <FlatList
-            data ={data[2].rows}
-            extraData = {flag}
-            renderItem={({item})=>(
-              <TouchableOpacity style={styles.done_cards} onLongPress ={()=>{deletionAlert(3,item);}} onPress={()=>{pushToMoveDONE(item)} }>
-                <Text style={{ textDecorationLine:'line-through', textDecorationStyle:"double",textDecorationColor:"red"}}>{item.name}</Text>
-                </TouchableOpacity>
-              
-            )}
-            keyExtractor={(item, index) => index.toString()}
-           />
-          </SafeAreaView>
+  return (
+    <SafeAreaView style={styles.board_container}>
+      <SafeAreaView style={styles.board_title}>
+        <Image style ={{ transform:[{scale:0.27}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
+      </SafeAreaView>
+      <SafeAreaView style={styles.board}>
+        <SafeAreaView style={styles.columns}>
+          <Text style={styles.column_heading_1}>
+            TO DO
+          </Text>
+          <FlatList
+          data ={data[0].rows}
+          extraData = {flag}
+          renderItem={({item})=>(
+          <TouchableOpacity style={styles.todo_cards} onLongPress ={()=>{deletionAlert(1,item);}} onPress={()=>{pushToMoveTODO(item);}}>
+            <Text>{item.name}</Text>
+          </TouchableOpacity>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          />
           
         </SafeAreaView>
-        <SafeAreaView style={styles.board_bottom}>
+        <SafeAreaView style={styles.columns}>
+        <Text style={styles.column_heading_2}>
+            IN PROGRESS
+          </Text>
+          <FlatList
+          data ={data[1].rows}
+          extraData = {flag}
+          renderItem={({item})=>(
+            <TouchableOpacity style={styles.inprog_cards} onLongPress ={()=>{deletionAlert(2,item);}} onPress={()=>{pushToMoveINPROG(item)}}>
+              <Text>{item.name}</Text>
+              </TouchableOpacity>
+            
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          />
+        </SafeAreaView>
+        <SafeAreaView style={styles.columns}>
+          <Text style={styles.column_heading_3}>
+            DONE
+          </Text>
+          <FlatList
+          data ={data[2].rows}
+          extraData = {flag}
+          renderItem={({item})=>(
+            <TouchableOpacity style={styles.done_cards} onLongPress ={()=>{deletionAlert(3,item);}} onPress={()=>{pushToMoveDONE(item)} }>
+              <Text style={{ textDecorationLine:'line-through', textDecorationStyle:"double",textDecorationColor:"red"}}>{item.name}</Text>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          />
+        </SafeAreaView>  
+      </SafeAreaView>
+      <SafeAreaView style={styles.board_bottom}>
         <TextInput style={styles.input}
         onChangeText={(tsk) => setNew(tsk)}
         value={newTask}
@@ -346,29 +341,29 @@ export default KanbanBoard = ({navigation,route}) => {
         <TouchableOpacity onPress={()=>addTask()}>
               <Image source = {require('../assets/add_task.png')}/>
         </TouchableOpacity>
-        </SafeAreaView>
       </SafeAreaView>
-    );
-  }
+    </SafeAreaView>
+  );
+}
 
 //||==================**************************** STYLING COMPONENTS ****************************==================||
 
   const styles = StyleSheet.create({
-    board_container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        resizeMode:'contain',
-        borderWidth:5
-      },
+      board_container: {
+          flex: 1,
+          backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContent: 'center',
+          resizeMode:'contain',
+          borderWidth:5
+        },
     
       board_title:{flex:0.5,
         alignItems: 'center',
         justifyContent: 'center',
         resizeMode:'contain',
-      backgroundColor:'#0197f6',
-      width:404},
+        backgroundColor:'#0197f6',
+        width:404},
       
         board:{
         flex:2,

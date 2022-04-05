@@ -3,7 +3,7 @@
  *  author: Amal Majeed <amf856@uregina.ca>
  *  version: 0.1
  *  date-created: mar-27-2022 
- *  last-modified: apr-04-2022
+ *  last-modified: apr-05-2022
  */
 
 import React, {useState} from 'react';
@@ -21,7 +21,6 @@ import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable, Alert } fr
  * <1> navigation - property that is passed to every component that is part of the navigation stack in the App. This property
  *                  allows user to navigate to any route/component in the stack from the current route.
  * Precondition(s):
- * 
  * <1> All the styling components are defined within the Stylesheet object 'styles'.
  * <2> Title logo image is stored in the assets folder
  * 
@@ -38,32 +37,30 @@ import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable, Alert } fr
  */
 
 
-export default HomePage = ({navigation}) => {
+export default HomePage = ({navigation}) => 
+{
   const [t1,setTask1] = useState("");
   const [t2,setTask2] = useState("");
   const [t3,setTask3] = useState("");
-  const [errMsg,setErr] = useState("");
 
-/**
- * FUNCTION - noTaskEmpties()
- * 
- * Purpose : This function checks for empty entries initially
- * 
- * Parameter(s):
- * N/A
- * 
- * Precondition(s):
- * 
- * <1> State hooks 't1','t2' and 't3' were initialized.
- * 
- * 
- * Returns: 
- * N/A
- * 
- * Side effect:
- * <1> Modifies the state hooks 't1', 't2' and 't3'.
- *
- */
+  /**
+   * FUNCTION - noTaskEmpties()
+   * 
+   * Purpose : This function checks for empty entries initially
+   * 
+   * Parameter(s):
+   * N/A
+   * 
+   * Precondition(s):
+   * <1> State hooks 't1','t2' and 't3' were initialized.
+   * 
+   * Returns: 
+   * N/A
+   * 
+   * Side effect:
+   * <1> Modifies the state hooks 't1', 't2' and 't3'.
+   *
+   */
 
   const noTaskEmpties = () =>
   {
@@ -108,63 +105,69 @@ export default HomePage = ({navigation}) => {
       return(false);
   }
 
-return(
-  <SafeAreaView style={styles.home_container}>
-    <SafeAreaView style={styles.home_title}>
-        <Image style ={{ transform:[{scale:0.50}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
-    </SafeAreaView>
-    <SafeAreaView style={styles.home_midsection}>
-      <Text style={styles.text_title}> Enter your 3 focus tasks for today !</Text>
-      <TextInput style={styles.input}
-        onChangeText={(tsk) => setTask1(tsk)}
-        placeholder="Enter task 1 here" />
-      <TextInput style={styles.input}
-        onChangeText={(tsk) => setTask2(tsk)}
-        placeholder="Enter task 2 here" />
-      <TextInput style={styles.input}
-        onChangeText={(tsk) => setTask3(tsk)}
-        placeholder="Enter task 3 here" />
-      <Pressable
-        style={{backgroundColor:"lime",
-        borderRadius:50,
-        shadowColor:"white",
-        shadowRadius:10,
-        shadowOpacity:1,
-        marginBottom:50, 
-        marginTop:30,
-        paddingTop:20,
-        paddingBottom:20,
-        borderWidth: 4,
-        width:200,
-        alignItems:"center"}}
-            onPress={() => {console.log("Pressed");
-                            if(noTaskEmpties())
-                            {
-                                setErr('');
-                                navigation.navigate('BoardPage',{task1: t1,task2: t2,task3: t3})
-                            }
-                        }}>
-          <Text style={{fontSize:18}}>Let us begin ! </Text>
-        </Pressable>
+  return(
+    <SafeAreaView style={styles.home_container}>
+      <SafeAreaView style={styles.home_title}>
+          <Image style ={{ transform:[{scale:0.50}],}} source = {require('../assets/Kanban-board-1.png')}></Image>
+      </SafeAreaView>
+      <SafeAreaView style={styles.home_midsection}>
+        <Text style={styles.text_title}> Enter your 3 focus tasks for today !</Text>
+        <TextInput style={styles.input}
+          onChangeText={(tsk) => setTask1(tsk)}
+          placeholder="Enter task 1 here" />
+        <TextInput style={styles.input}
+          onChangeText={(tsk) => setTask2(tsk)}
+          placeholder="Enter task 2 here" />
+        <TextInput style={styles.input}
+          onChangeText={(tsk) => setTask3(tsk)}
+          placeholder="Enter task 3 here" />
         <Pressable
-        style={{backgroundColor:"thistle",
-        borderRadius:70,
-        shadowColor:"white",
-        shadowRadius:10,
-        shadowOpacity:1,
-        marginBottom:50, 
-        marginTop:30,
-        paddingTop:20,
-        paddingBottom:20,
-        borderWidth: 4,
-        width:100,
-        alignItems:"center"}}
-            onPress={() => { navigation.navigate('HelpPage'); }}>
-          <Text style={{fontSize:18}}> ? Help </Text>
-        </Pressable>
+          style=
+          {{
+            backgroundColor:"lime",
+            borderRadius:50,
+            shadowColor:"white",
+            shadowRadius:10,
+            shadowOpacity:1,
+            marginBottom:50, 
+            marginTop:30,
+            paddingTop:20,
+            paddingBottom:20,
+            borderWidth: 4,
+            width:200,
+            alignItems:"center"
+          }}
+          onPress={() => {console.log("Pressed");
+                          if(noTaskEmpties())
+                          {
+                              setErr('');
+                              navigation.navigate('BoardPage',{task1: t1,task2: t2,task3: t3})
+                          }
+                  }}>
+            <Text style={{fontSize:18}}>Let us begin ! </Text>
+          </Pressable>
+          <Pressable
+          style=
+          {{
+            backgroundColor:"thistle",
+            borderRadius:70,
+            shadowColor:"white",
+            shadowRadius:10,
+            shadowOpacity:1,
+            marginBottom:50, 
+            marginTop:30,
+            paddingTop:20,
+            paddingBottom:20,
+            borderWidth: 4,
+            width:100,
+            alignItems:"center"
+          }}
+          onPress={() => { navigation.navigate('HelpPage'); }}>
+            <Text style={{fontSize:18}}> ? Help </Text>
+          </Pressable>
+      </SafeAreaView>
     </SafeAreaView>
-  </SafeAreaView>
-);
+  );
 }
 
 //||==================**************************** STYLING COMPONENTS ****************************==================||
