@@ -46,10 +46,9 @@ This project was developed as a part of my coursework for CS 855: Mobile Computi
 - If installing using npm generates package dependecy errors, delete node_modules folder and use 'sudo yarn install' instead of 'sudo npm install'
 - If trying to modify code to change features, preferably use VS Code as the IDE.
 
-### Troubleshooting and tips
+### Contact
 
-- If installing using npm generates package dependecy errors, delete node_modules folder and use 'sudo yarn install' instead of 'sudo npm install'
-- If trying to modify code to change features, preferably use VS Code as the IDE.
+E-mail : amf856@uregina.ca / amalmajeed7@gmail.ca
 
 # Contributors
 
