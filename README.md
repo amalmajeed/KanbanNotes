@@ -36,11 +36,9 @@ This project was developed as a part of my coursework for CS 855: Mobile Computi
 - Run 'expo start' or 'expo start -c' to clear cache from previous runs.
 - Open camera app to scan the generated QR code to automatically open Expo Go on your mobile device or manually open expo go and connect to the project by signing in with your expo account credentials to open the app.
 
-### Operation instructions
+### Operation instructional video
 
-1. At the home page
-
-![WhatsApp Image 2022-04-05 at 2 26 40 PM](https://user-images.githubusercontent.com/11253406/161844002-22cbd4e8-6772-4c2d-b648-3fd10705c158.jpeg)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tSJxPzLS6D4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 #### Note: When you Add a project Add it to the README for ease of finding it
