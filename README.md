@@ -7,8 +7,7 @@
 
 ### Description
 
-Welcome Onboard fellow Developer, This is where you will find Python scripts where you are free to contribute too.
-You can Contribute by giving your scripts written in python and you think are amazing for other people to see.
+This project was developed as a part of my coursework for CS 855: Mobile Computing Winter 2022. The aim of this project was to learn the basics of mobile development using react native and expo. This project is a Kanban board for your iOS device for ad-hoc task tracking on the go. I like to create a list of acheivables before beginning the day using post it notes and by the end of the day I finish them and the satisfaction of crossing off the work I had to do is extremely fulfilling and that is what I aimed to replicate using this application which is a Kanban board with three columns 'TO DO', 'IN PROGRESS' and 'DONE' to track the status of your daily acheivables which are rendered as color coded task cards based on their status.
 
 ### Contribution Guidelines
 
