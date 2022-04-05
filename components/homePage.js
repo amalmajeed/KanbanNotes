@@ -87,7 +87,6 @@ export default HomePage = ({navigation}) =>
       {
         if((l2!=l3))
         {
-            //setErr('');
             return(true)
         }
       }
@@ -140,7 +139,6 @@ export default HomePage = ({navigation}) =>
           onPress={() => {console.log("Pressed");
                           if(noTaskEmpties())
                           {
-                              //setErr('');
                               navigation.navigate('BoardPage',{task1: t1,task2: t2,task3: t3})
                           }
                   }}>
