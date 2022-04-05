@@ -1,4 +1,4 @@
-# <img alt="Join us on Slack" src="https://github.com/amalmajeed/toDoNotes/blob/main/assets/Kanban-board-1.png" width="165"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kanban Notes app
+# <img alt="Join us on Slack" src="https://github.com/amalmajeed/toDoNotes/blob/main/assets/Kanban-board-1.png" width="165"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KANBAN NOTES APP
 
 
 
