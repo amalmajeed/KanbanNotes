@@ -38,7 +38,7 @@ This project was developed as a part of my coursework for CS 855: Mobile Computi
 
 ### Operation instructions
 
-1. Home
+1. At the home page
 
 #### Note: When you Add a project Add it to the README for ease of finding it
 #### Note: Please do not put the project link to reference your local forked repo. Always link it to this repo after it's been merged with main.
