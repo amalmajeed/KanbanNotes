@@ -1,5 +1,6 @@
 # <img alt="Join us on Slack" src="https://github.com/amalmajeed/toDoNotes/blob/main/assets/Kanban-board-1.png" width="165"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KANBAN NOTES APP
 
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Version 1.0.0
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Contributors](https://img.shields.io/github/contributors/amalmajeed/toDoNotes?style=plastic) ![Licence](https://img.shields.io/github/license/amalmajeed/toDoNotes)
 
@@ -36,9 +37,20 @@ This project was developed as a part of my coursework for CS 855: Mobile Computi
 - Run 'expo start' or 'expo start -c' to clear cache from previous runs.
 - Open camera app to scan the generated QR code to automatically open Expo Go on your mobile device or manually open expo go and connect to the project by signing in with your expo account credentials to open the app.
 
-### Operation instructional video
+### How to use video (click image)
 
 [![Kanban Notes - How to Use](http://img.youtube.com/vi/tSJxPzLS6D4/0.jpg)](http://www.youtube.com/watch?v=tSJxPzLS6D4 "Kanban Notes App - How to use")
+
+### Troubleshooting and tips
+
+- If installing using npm generates package dependecy errors, delete node_modules folder and use 'sudo yarn install' instead of 'sudo npm install'
+- If trying to modify code to change features, preferably use VS Code as the IDE.
+
+### Troubleshooting and tips
+
+- If installing using npm generates package dependecy errors, delete node_modules folder and use 'sudo yarn install' instead of 'sudo npm install'
+- If trying to modify code to change features, preferably use VS Code as the IDE.
+
 
 #### Note: When you Add a project Add it to the README for ease of finding it
 #### Note: Please do not put the project link to reference your local forked repo. Always link it to this repo after it's been merged with main.
