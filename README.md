@@ -48,7 +48,7 @@ This project was developed as a part of my coursework for CS 855: Mobile Computi
 
 ### Contact
 
-E-mail : amf856@uregina.ca / amalmajeed7@gmail.ca
+E-mail : amf856@uregina.ca / amalmajeed7@gmail.com
 
 # Contributors
 
