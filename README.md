@@ -1,2 +1,3 @@
 # Kanban Notes app
-cs855 final project work
+
+![Contributors](https://img.shields.io/github/contributors/amalmajeed/toDoNotes?style=plastic)
